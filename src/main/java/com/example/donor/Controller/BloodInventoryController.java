@@ -3,6 +3,7 @@ package com.example.donor.Controller;
 import com.example.donor.Model.BloodInventory;
 import com.example.donor.Service.BloodInventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +21,10 @@ public class BloodInventoryController {
         return bloodInventoryService.getAllBloodInventory();
     }
 
-    @GetMapping("/{bloodType}")
-    public Optional<BloodInventory> getByBloodType(String bloodType){
-        return bloodInventoryService.getByBloodType(bloodType);
+    @GetMapping("/bloodType")
+    public ResponseEntity<BloodInventory> getByBloodType(@RequestParam String bloodType) {
+        BloodInventory bloodInventory = bloodInventoryService.getByBloodType(bloodType);
+        return ResponseEntity.ok(bloodInventory);
     }
 
 

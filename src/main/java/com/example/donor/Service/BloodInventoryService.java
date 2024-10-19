@@ -18,10 +18,9 @@ public class BloodInventoryService {
         return bloodInventoryRepository.findAll();
     }
 
-    public Optional<BloodInventory> getByBloodType(String bloodType) {
-        return bloodInventoryRepository.findAll().stream()
-                .filter(b -> b.getBloodType().equalsIgnoreCase(bloodType)) // Use equalsIgnoreCase for case-insensitive comparison
-                .findFirst(); // This returns an Optional<BloodInventory>
+    public BloodInventory getByBloodType(String bloodType) {
+        return bloodInventoryRepository.findByBloodType(bloodType)
+                .orElseThrow(() -> new ResourceNotFoundException("Blood Type not found: " + bloodType));
     }
 
 

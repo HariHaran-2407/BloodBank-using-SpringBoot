@@ -37,8 +37,8 @@ public class DonorController {
         return donorService.saveDonor(donor);
     }
 
-    @DeleteMapping("/id")
-    public void deleteDonor(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public void deleteDonor(@PathVariable Long id) {
         donorService.deleteDonor(id);
     }
 
